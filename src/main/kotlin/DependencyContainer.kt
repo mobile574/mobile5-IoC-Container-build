@@ -2,7 +2,6 @@
 import exception.CircularDependencyException
 import javax.inject.Singleton
 import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 import kotlin.reflect.full.hasAnnotation
 
 class DependencyContainer private constructor(
@@ -102,6 +101,3 @@ class DependencyContainer private constructor(
         bindings.forEach { resolveBinding(it.key) }
     }
 }
-
-private val KFunction<Any>.hasSingletonAnnotation
-    get() = annotations.any { hasAnnotation<Singleton>() }
