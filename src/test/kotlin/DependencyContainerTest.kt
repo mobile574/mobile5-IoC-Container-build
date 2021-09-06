@@ -73,10 +73,9 @@ internal class DependencyContainerTest {
     fun `resolve binding for the registered interface`() {
         // given
         subject.registerBinding(Foo::class, FooImpl::class)
-        whenever(constructorSelector.invoke(FooImpl::class)).thenReturn(FooImpl::class.primaryConstructor)
 
         // when
-        val instance = subject.resolveBinding<FooImpl>()
+        val instance = subject.resolveBinding<Foo>()
 
         // then
         instance shouldBeInstanceOf FooImpl::class
