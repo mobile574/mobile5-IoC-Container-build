@@ -34,7 +34,17 @@ Register instance:
 container.registerBinding(Foo::class, FooImpl::class)
 ```
 
+Resolve class with parameterless constructor:
 
+```kotlin
+class FooImpl: Foo
+
+val container = DependencyContainer.getInstance()
+
+// No registration in contaier is required for class with parameterless constructor
+val instance = container.resolveBinding<FooImpl>()
+println(instance) // FooImpl
+```
 
 Resolve binding for the interface:
 
@@ -43,6 +53,7 @@ interface Foo
 class FooImpl: Foo
 
 val container = DependencyContainer.getInstance()
+// Given interface Foo return FooImpl instance
 container.registerBinding(Foo::class, FooImpl::class)
 
 val instance = container.resolveBinding<Foo>()
